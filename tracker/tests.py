@@ -11,11 +11,6 @@ class TrackerApiTests(TestCase):
     def setUp(self):
         self.client = APIClient()
 
-    def test_frontend_homepage_exists(self):
-        response = self.client.get("/")
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Phone Tracker")
-
     def test_create_device(self):
         response = self.client.post("/api/devices/", {"name": "Pixel", "owner": "Alice"}, format="json")
 

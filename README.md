@@ -1,6 +1,6 @@
-# Phone Track Backend (Django + DRF + Integrated Frontend)
+# Phone Track Backend (Django + DRF)
 
-This repository contains a Django backend for tracking phone devices and their location logs, with an integrated frontend served at `/`.
+This repository contains a Django backend for tracking phone devices and their location logs.
 
 ## Features
 - Device CRUD endpoints via Django REST Framework.
@@ -8,7 +8,6 @@ This repository contains a Django backend for tracking phone devices and their l
 - Validation for latitude, longitude, accuracy, and timestamps.
 - Filtering by `device` query parameter for location logs.
 - Pagination enabled on list endpoints.
-- Simple integrated frontend for managing devices and location logs.
 - Django admin for managing devices and location data.
 
 ## Quick start
@@ -31,8 +30,6 @@ This repository contains a Django backend for tracking phone devices and their l
    ```bash
    python manage.py runserver
    ```
-6. Open the UI:
-   - `http://127.0.0.1:8000/`
 
 ## API endpoints
 Base path: `/api/`
@@ -46,3 +43,4 @@ Base path: `/api/`
 ### Query options
 - Devices: `?search=<name_or_owner>&ordering=name|-name|created_at|-created_at`
 - Locations: `?device=<device_id>&ordering=captured_at|-captured_at`
+phone_track
