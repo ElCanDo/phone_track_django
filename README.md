@@ -43,3 +43,4 @@ Base path: `/api/`
 ### Query options
 - Devices: `?search=<name_or_owner>&ordering=name|-name|created_at|-created_at`
 - Locations: `?device=<device_id>&ordering=captured_at|-captured_at`
+phone_track
