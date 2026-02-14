@@ -39,5 +39,39 @@ class TrackerApiTests(TestCase):
         response = self.client.get(f"/api/locations/?device={device_a.id}")
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.data), 1)
-        self.assertEqual(response.data[0]["device"], device_a.id)
+        self.assertEqual(response.data["count"], 1)
+        self.assertEqual(response.data["results"][0]["device"], device_a.id)
+
+    def test_reject_invalid_coordinates(self):
+        device = Device.objects.create(name="Nexus")
+        response = self.client.post(
+            "/api/locations/",
+            {
+                "device": device.id,
+                "latitude": 93,
+                "longitude": 45,
+                "accuracy_meters": 2,
+                "captured_at": timezone.now().isoformat(),
+            },
+            format="json",
+        )
+
+        self.assertEqual(response.status_code, 400)
+        self.assertIn("latitude", response.data)
+
+    def test_reject_negative_accuracy(self):
+        device = Device.objects.create(name="OnePlus")
+        response = self.client.post(
+            "/api/locations/",
+            {
+                "device": device.id,
+                "latitude": 43,
+                "longitude": 45,
+                "accuracy_meters": -1,
+                "captured_at": timezone.now().isoformat(),
+            },
+            format="json",
+        )
+
+        self.assertEqual(response.status_code, 400)
+        self.assertIn("accuracy_meters", response.data)
