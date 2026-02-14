@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phone Tracker</title>
+  <link rel="stylesheet" href="/static/tracker/app.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Phone Tracker</h1>
+
+    <section class="panel">
+      <h2>Devices</h2>
+      <form id="device-form" class="form-row">
+        <input type="text" id="device-name" placeholder="Device name" required />
+        <input type="text" id="device-owner" placeholder="Owner" />
+        <button type="submit">Add Device</button>
+      </form>
+      <ul id="device-list"></ul>
+    </section>
+
+    <section class="panel">
+      <h2>Add Location</h2>
+      <form id="location-form" class="form-grid">
+        <select id="location-device" required></select>
+        <input type="number" id="latitude" step="0.000001" placeholder="Latitude" required />
+        <input type="number" id="longitude" step="0.000001" placeholder="Longitude" required />
+        <input type="number" id="accuracy" step="0.1" min="0" placeholder="Accuracy (m)" required />
+        <input type="datetime-local" id="captured-at" required />
+        <button type="submit">Save Location</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>Recent Locations</h2>
+      <ul id="location-list"></ul>
+    </section>
+  </main>
+
+  <script src="/static/tracker/app.js"></script>
+</body>
+</html>
